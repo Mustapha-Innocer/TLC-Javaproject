@@ -1,0 +1,3 @@
+public enum Level {
+    FRESHMAN,JUNIOR,SOPHOMORE,SENIOR
+}
