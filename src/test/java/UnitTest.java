@@ -95,10 +95,15 @@ public class UnitTest {
         Student std3 = new Student(s3Name, s3Grades,Level.SOPHOMORE);
         List<Student> students = Arrays.asList(std1, std2, std3);
         Register register = new Register(students);
-        System.out.println(Register.getRegisterByLevel(Level.SOPHOMORE));
+        //System.out.println(register.getRegisterByLevel(Level.SOPHOMORE));
         List<String> expectedNames = Arrays.asList(std1.getName(), std2.getName(), std3.getName());
 
         Assert.assertEquals(expectedNames,Register.getRegister());
+    }
+
+    //Student not found exception test
+    @Test
+    public void studentNotFoundExceptionTest(){
 
     }
 

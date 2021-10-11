@@ -1,3 +1,3 @@
 interface NameAble {
-    public String getName();
+    String getName();
 }
