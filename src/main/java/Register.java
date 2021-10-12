@@ -32,7 +32,7 @@ public class Register {
 //        }
         return studentByLevel;
     }
-
+    //TODO: PRINT REPORT
 //    public static String printReport(){
 //
 //    }
@@ -41,15 +41,22 @@ public class Register {
         Collections.sort(students, sortByName);
         return students;
     }
-
+    //TODO: fIX OUTBOUNT ERROR
     public Student studentByName(String name) throws StudentNotFoundException{
-                Student std = students.stream()
-                .map(student -> (student.getName() == name ? student : null ))
+        Optional<Student> std = Optional.of(students.stream()
+                .filter(student -> (student.getName().equals(name)))
                 .collect(Collectors.toList())
-                .get(0);
-        if(std != null){
-            return std;
+                .get(0));
+        if (std.isPresent()){
+            return std.get();
         }
+//        Student std = students.stream()
+//                .map(student -> (student.getName() == name ? student : null ))
+//                .collect(Collectors.toList())
+//                .get(0);
+//        if(std != null){
+//            return std;
+//        }
         throw new StudentNotFoundException(name + " not found");
     }
 
@@ -64,6 +71,26 @@ public class Register {
     List<Double> moreThan60PercentGrades(Student student){
         //Double percentGrade = student.getAverageGrade() * 0.6;
         return student.getGrades().stream().filter(grade -> grade > 6).collect(Collectors.toList());
+    }
+
+    public Optional<Student> stdByName(String name){
+        Optional<Student> std = Optional.of(students.stream()
+                .filter(student -> (student.getName() == name ))
+                .collect(Collectors.toList())
+                .get(0));
+        if (std.isPresent()){
+            return std;
+        }else{
+            return null;
+        }
+
+    }
+
+    List<Student> getStudentsByName(List<String> names){
+        return names.stream()
+                .map( name -> stdByName(name).get())
+                .collect(Collectors.toList());
+
     }
 
 }
